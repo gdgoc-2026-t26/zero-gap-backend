@@ -25,7 +25,7 @@ services:
       - DB_PASSWORD=password1!
       - GOOGLE_API_KEY=${GOOGLE_API_KEY}
     ports:
-      - "8080:8080"
+      - "80:8080"
 
 volumes:
   mysql_data:
