@@ -36,6 +36,8 @@ public class UserChallenge {
     @Enumerated(EnumType.STRING)
     private ChallengeStatus status;
 
+    private String description;
+
     private LocalDateTime startTime;
 
     private LocalDateTime completionTime;

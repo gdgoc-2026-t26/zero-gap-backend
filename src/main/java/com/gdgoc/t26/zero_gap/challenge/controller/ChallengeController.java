@@ -2,6 +2,7 @@ package com.gdgoc.t26.zero_gap.challenge.controller;
 
 import com.gdgoc.t26.zero_gap.challenge.domain.DurationCategory;
 import com.gdgoc.t26.zero_gap.challenge.dto.ChallengeResponse;
+import com.gdgoc.t26.zero_gap.challenge.dto.StartChallengeRequest;
 import com.gdgoc.t26.zero_gap.challenge.dto.UserChallengeResponse;
 import com.gdgoc.t26.zero_gap.challenge.service.ChallengeService;
 import lombok.RequiredArgsConstructor;
@@ -29,10 +30,10 @@ public class ChallengeController {
     }
 
     @PostMapping("/{id}/start")
-    public UserChallengeResponse startChallenge(@PathVariable UUID id) {
+    public UserChallengeResponse startChallenge(@PathVariable UUID id, @RequestBody StartChallengeRequest request) {
         // Placeholder user ID until security is implemented
         UUID userId = UUID.fromString("00000000-0000-0000-0000-000000000000");
-        return UserChallengeResponse.from(challengeService.startChallenge(userId, id));
+        return UserChallengeResponse.from(challengeService.startChallenge(userId, id, request.getDescription()));
     }
 
     @PostMapping("/{id}/complete")

@@ -15,6 +15,7 @@ public class UserChallengeResponse {
     private UUID userId;
     private UUID challengeId;
     private ChallengeStatus status;
+    private String description;
     private LocalDateTime startTime;
     private LocalDateTime completionTime;
 
@@ -24,6 +25,7 @@ public class UserChallengeResponse {
                 .userId(userChallenge.getUserId())
                 .challengeId(userChallenge.getChallenge().getId())
                 .status(userChallenge.getStatus())
+                .description(userChallenge.getDescription())
                 .startTime(userChallenge.getStartTime())
                 .completionTime(userChallenge.getCompletionTime())
                 .build();

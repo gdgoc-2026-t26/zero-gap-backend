@@ -18,8 +18,8 @@ public class ChallengeGenerationService {
     private final ObjectMapper objectMapper;
 
     public Challenge generateChallenge(DurationCategory duration) {
-        String prompt = String.format("Generate a challenge for a person experiencing burnout with duration %s. " +
-                "Return the response in JSON format with 'title' and 'description' fields.", duration);
+        String prompt = String.format("Generate a brief challenge title for a person experiencing burnout with duration %s. " +
+                "Return the response in JSON format with only a 'title' field.", duration);
         
         String response = chatModel.call(prompt);
         
@@ -27,7 +27,7 @@ public class ChallengeGenerationService {
             Map<String, String> responseMap = objectMapper.readValue(response, Map.class);
             return Challenge.builder()
                     .title(responseMap.get("title"))
-                    .description(responseMap.get("description"))
+                    .description("") // User will provide description later
                     .durationCategory(duration)
                     .aiGenerated(true)
                     .build();

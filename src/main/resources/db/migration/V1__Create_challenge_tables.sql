@@ -14,6 +14,7 @@ CREATE TABLE user_challenges (
     user_id BINARY(16) NOT NULL,
     challenge_id BINARY(16) NOT NULL,
     status VARCHAR(50) NOT NULL,
+    description TEXT,
     start_time DATETIME,
     completion_time DATETIME,
     progress_log TEXT,

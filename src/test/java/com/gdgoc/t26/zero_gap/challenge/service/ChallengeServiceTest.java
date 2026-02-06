@@ -55,15 +55,17 @@ class ChallengeServiceTest {
         // Given
         UUID userId = UUID.randomUUID();
         UUID challengeId = UUID.randomUUID();
+        String description = "User defined description";
         Challenge challenge = Challenge.builder().id(challengeId).build();
         when(challengeRepository.findById(challengeId)).thenReturn(Optional.of(challenge));
         when(userChallengeRepository.save(any(UserChallenge.class))).thenAnswer(i -> i.getArgument(0));
 
         // When
-        UserChallenge userChallenge = challengeService.startChallenge(userId, challengeId);
+        UserChallenge userChallenge = challengeService.startChallenge(userId, challengeId, description);
 
         // Then
         assertThat(userChallenge.getStatus()).isEqualTo(ChallengeStatus.STARTED);
+        assertThat(userChallenge.getDescription()).isEqualTo(description);
         assertThat(userChallenge.getStartTime()).isNotNull();
         verify(userChallengeRepository).save(any(UserChallenge.class));
     }

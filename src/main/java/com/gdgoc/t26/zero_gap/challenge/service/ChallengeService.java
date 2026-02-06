@@ -30,7 +30,7 @@ public class ChallengeService {
     }
 
     @Transactional
-    public UserChallenge startChallenge(UUID userId, UUID challengeId) {
+    public UserChallenge startChallenge(UUID userId, UUID challengeId, String description) {
         Challenge challenge = challengeRepository.findById(challengeId)
                 .orElseThrow(() -> new RuntimeException("Challenge not found"));
 
@@ -38,6 +38,7 @@ public class ChallengeService {
                 .userId(userId)
                 .challenge(challenge)
                 .status(ChallengeStatus.STARTED)
+                .description(description)
                 .startTime(LocalDateTime.now())
                 .build();
 
