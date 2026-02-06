@@ -56,28 +56,31 @@ class ChallengeControllerTest {
     @Test
     @DisplayName("POST /challenges/{id}/start should start a challenge")
     void startChallengeShouldReturnUserChallenge() throws Exception {
+        // ... (existing test)
+    }
+
+    @Test
+    @DisplayName("POST /challenges/{id}/complete should complete a challenge")
+    void completeChallengeShouldReturnUserChallenge() throws Exception {
         // Given
         UUID challengeId = UUID.randomUUID();
-        UUID userId = UUID.randomUUID(); // This would normally come from security context
+        UUID userId = UUID.randomUUID();
         
         com.gdgoc.t26.zero_gap.challenge.domain.UserChallenge userChallenge = 
                 com.gdgoc.t26.zero_gap.challenge.domain.UserChallenge.builder()
                 .id(UUID.randomUUID())
                 .userId(userId)
                 .challenge(Challenge.builder().id(challengeId).build())
-                .status(com.gdgoc.t26.zero_gap.challenge.domain.ChallengeStatus.STARTED)
-                .startTime(java.time.LocalDateTime.now())
+                .status(com.gdgoc.t26.zero_gap.challenge.domain.ChallengeStatus.COMPLETED)
+                .completionTime(java.time.LocalDateTime.now())
                 .build();
 
-        // Note: For now, we'll mock userId as being passed or resolved somehow.
-        // The spec says POST /challenges/{challenge_id}/start.
-        // Usually, userId is from authenticated user.
-        when(challengeService.startChallenge(any(UUID.class), eq(challengeId))).thenReturn(userChallenge);
+        when(challengeService.completeChallenge(any(UUID.class), eq(challengeId))).thenReturn(userChallenge);
 
         // When & Then
-        mockMvc.perform(post("/challenges/" + challengeId + "/start"))
+        mockMvc.perform(post("/challenges/" + challengeId + "/complete"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.status").value("STARTED"))
+                .andExpect(jsonPath("$.status").value("COMPLETED"))
                 .andExpect(jsonPath("$.challengeId").value(challengeId.toString()));
     }
 }

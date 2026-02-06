@@ -34,4 +34,11 @@ public class ChallengeController {
         UUID userId = UUID.fromString("00000000-0000-0000-0000-000000000000");
         return UserChallengeResponse.from(challengeService.startChallenge(userId, id));
     }
+
+    @PostMapping("/{id}/complete")
+    public UserChallengeResponse completeChallenge(@PathVariable UUID id) {
+        // Placeholder user ID until security is implemented
+        UUID userId = UUID.fromString("00000000-0000-0000-0000-000000000000");
+        return UserChallengeResponse.from(challengeService.completeChallenge(userId, id));
+    }
 }
