@@ -19,9 +19,9 @@ This plan outlines the steps to implement the Action Challenges API. Each task i
 
 ## Phase 2: Core Service Logic and AI Integration
 
-- [ ] Task: Implement Challenge Generation Service
-    - [ ] Write Tests: Create unit tests for `ChallengeGenerationService` (mocking AI API calls).
-    - [ ] Implement Feature: Develop `ChallengeGenerationService` to interact with Gemini 3 API.
+- [x] Task: Implement Challenge Generation Service [dbd7b55]
+    - [x] Write Tests: Create unit tests for `ChallengeGenerationService` (mocking AI API calls).
+    - [x] Implement Feature: Develop `ChallengeGenerationService` to interact with Gemini 3 API.
 - [ ] Task: Implement Challenge Management Service
     - [ ] Write Tests: Create unit tests for `ChallengeService` (logic for getting, starting, completing challenges).
     - [ ] Implement Feature: Develop `ChallengeService` to orchestrate business logic using repositories and generation service.
