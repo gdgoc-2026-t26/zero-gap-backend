@@ -49,4 +49,14 @@ public class ChallengeGenerationService {
         
         return response.trim();
     }
+
+    public String generateSummary(String data) {
+        String prompt = String.format("Based on the following user mission and emotion data during a period: \n%s\n " +
+                "Generate a short one-sentence AI summary and encouragement in Korean. Output only the text without any formatting.", data);
+        
+        String response = chatModel.call(prompt);
+        System.out.println("AI Response (Summary):\n" + response);
+        
+        return response.trim();
+    }
 }
