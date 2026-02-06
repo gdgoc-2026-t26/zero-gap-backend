@@ -1,6 +1,5 @@
 package com.gdgoc.t26.zero_gap.challenge.controller;
 
-import com.gdgoc.t26.zero_gap.challenge.domain.DurationCategory;
 import com.gdgoc.t26.zero_gap.challenge.domain.UserChallenge;
 import com.gdgoc.t26.zero_gap.challenge.dto.*;
 import com.gdgoc.t26.zero_gap.challenge.service.ChallengeService;
@@ -33,18 +32,14 @@ public class ChallengeController {
 
     @GetMapping("/today")
     public MissionRecommendationResponse getTodayRecommendations(
-            @RequestParam(defaultValue = "SHORT") DurationCategory duration) {
-        return MissionRecommendationResponse.from(challengeService.getTodayRecommendations(duration));
+            @RequestParam(required = false) Integer durationInSeconds) {
+        return MissionRecommendationResponse.from(challengeService.getTodayRecommendations(durationInSeconds));
     }
 
     @PostMapping
     public MissionCreateResponse createMission(@RequestBody MissionCreateRequest request) {
         Long userId = 1L; // Placeholder
-        UserChallenge userChallenge = challengeService.createMission(userId, request.getName(), request.getDate());
-        
-        // Placeholder cheer message logic
-        String cheerMessage = "취업에 필요한 기술을 배우거나 마음의 양식을 쌓아 봐요!";
-        return MissionCreateResponse.of(userChallenge.getId(), cheerMessage);
+        return challengeService.createMission(userId, request.getName(), request.getDate());
     }
 
     @PatchMapping("/{missionId}")

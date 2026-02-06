@@ -24,16 +24,13 @@ public class ChallengeService {
         return userChallengeRepository.findByUserIdAndDateBetween(userId, startDate, endDate);
     }
 
-    public List<String> getTodayRecommendations(DurationCategory duration) {
-        return getRecommendedChallenges(duration).stream()
-                .map(Challenge::getTitle)
-                .collect(java.util.stream.Collectors.toList());
+    public List<String> getTodayRecommendations(Integer durationInSeconds) {
+        return challengeGenerationService.generateRecommendations(durationInSeconds);
     }
 
     @Transactional
-    public UserChallenge createMission(Long userId, String name, java.time.LocalDate date) {
+    public MissionCreateResponse createMission(Long userId, String name, java.time.LocalDate date) {
         // Find existing challenge by title or create a virtual one?
-        // For now, let's look for an existing one or create a generic one.
         Challenge challenge = challengeRepository.findByTitle(name)
                 .stream().findFirst()
                 .orElseGet(() -> {
@@ -54,7 +51,10 @@ public class ChallengeService {
                 .startTime(java.time.LocalDateTime.now())
                 .build();
 
-        return userChallengeRepository.save(userChallenge);
+        userChallengeRepository.save(userChallenge);
+        
+        String cheerMessage = challengeGenerationService.generateCheerMessage(name);
+        return MissionCreateResponse.of(userChallenge.getId(), cheerMessage);
     }
 
     @Transactional
@@ -79,20 +79,11 @@ public class ChallengeService {
 
         userChallengeRepository.save(userChallenge);
 
-        // Placeholder cheer message
-        String cheerMessage = "훌륭합니다! " + (description != null ? description : "미션을 완료하셨네요!");
+        String title = userChallenge.getChallenge().getTitle();
+        String cheerMessage = challengeGenerationService.generateCompletionMessage(title, description);
         return MissionPatchResponse.from(cheerMessage);
     }
 
-    public List<Challenge> getRecommendedChallenges(DurationCategory duration) {
-        List<Challenge> challenges = challengeRepository.findByDurationCategory(duration);
-        if (challenges.isEmpty()) {
-            Challenge newChallenge = challengeGenerationService.generateChallenge(duration);
-            challengeRepository.save(newChallenge);
-            return List.of(newChallenge);
-        }
-        return challenges;
-    }
 
     @Transactional
     public UserChallenge startChallenge(Long userId, UUID challengeId, String description) {

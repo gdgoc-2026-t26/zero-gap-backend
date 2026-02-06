@@ -1,38 +1,52 @@
 package com.gdgoc.t26.zero_gap.challenge.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gdgoc.t26.zero_gap.challenge.domain.Challenge;
-import com.gdgoc.t26.zero_gap.challenge.domain.DurationCategory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class ChallengeGenerationService {
 
     private final ChatModel chatModel;
-    private final ObjectMapper objectMapper;
 
-    public Challenge generateChallenge(DurationCategory duration) {
-        String prompt = String.format("Generate a brief challenge title for a person experiencing burnout with duration %s. " +
-                "Return the response in JSON format with only a 'title' field.", duration);
+    public List<String> generateRecommendations(Integer durationInSeconds) {
+        String durationText = durationInSeconds != null ? durationInSeconds + " seconds" : "a short period";
+        String prompt = String.format("Generate 5 brief challenge titles for a person experiencing burnout with available time of %s. " +
+                "Output each title on a new line, only in Korean, without any other text, numbering, or formatting.", durationText);
         
         String response = chatModel.call(prompt);
+        System.out.println("AI Response (Recommendations):\n" + response);
         
-        try {
-            Map<String, String> responseMap = objectMapper.readValue(response, Map.class);
-            return Challenge.builder()
-                    .title(responseMap.get("title"))
-                    .description("") // User will provide description later
-                    .durationCategory(duration)
-                    .aiGenerated(true)
-                    .build();
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException("Failed to parse AI response", e);
-        }
+        return Arrays.stream(response.split("\n"))
+                .map(String::trim)
+                .filter(line -> !line.isEmpty())
+                .limit(5)
+                .collect(Collectors.toList());
+    }
+
+    public String generateCheerMessage(String missionName) {
+        String prompt = String.format("A user is starting a mission called '%s'. " +
+                "Generate a short, encouraging cheer message only in Korean, as raw text without any formatting.", missionName);
+        
+        String response = chatModel.call(prompt);
+        System.out.println("AI Response (Cheer):\n" + response);
+        
+        return response.trim();
+    }
+
+    public String generateCompletionMessage(String missionName, String description) {
+        String prompt = String.format("A user has completed a mission called '%s'. " +
+                "The user's description of the completion is: '%s'. " +
+                "Generate a short, praising message only in Korean, as raw text without any formatting.", missionName, description);
+        
+        String response = chatModel.call(prompt);
+        System.out.println("AI Response (Completion):\n" + response);
+        
+        return response.trim();
     }
 }
