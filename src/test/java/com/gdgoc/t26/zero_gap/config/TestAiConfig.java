@@ -12,6 +12,8 @@ public class TestAiConfig {
     @Bean
     @Primary
     public ChatModel mockChatModel() {
-        return Mockito.mock(ChatModel.class);
+        ChatModel mock = Mockito.mock(ChatModel.class);
+        Mockito.when(mock.call(Mockito.anyString())).thenReturn("{\"title\": \"Default AI Title\"}");
+        return mock;
     }
 }

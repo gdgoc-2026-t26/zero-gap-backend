@@ -51,8 +51,8 @@ class ChallengeTest {
     }
 
     @Test
-    @DisplayName("Challenge with null description should fail validation")
-    void challengeWithNullDescriptionShouldFailValidation() {
+    @DisplayName("Challenge with null description should pass validation")
+    void challengeWithNullDescriptionShouldPassValidation() {
         Challenge challenge = Challenge.builder()
                 .title("Title")
                 .description(null)
@@ -60,7 +60,20 @@ class ChallengeTest {
                 .aiGenerated(false)
                 .build();
         Set<ConstraintViolation<Challenge>> violations = validator.validate(challenge);
-        assertThat(violations).isNotEmpty();
+        assertThat(violations).isEmpty();
+    }
+
+    @Test
+    @DisplayName("Challenge with empty description should pass validation")
+    void challengeWithEmptyDescriptionShouldPassValidation() {
+        Challenge challenge = Challenge.builder()
+                .title("Title")
+                .description("")
+                .durationCategory(DurationCategory.SHORT)
+                .aiGenerated(false)
+                .build();
+        Set<ConstraintViolation<Challenge>> violations = validator.validate(challenge);
+        assertThat(violations).isEmpty();
     }
 
     @Test
