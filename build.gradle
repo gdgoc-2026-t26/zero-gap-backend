@@ -11,7 +11,7 @@ description = 'backend server for job seeker helper app'
 
 jib {
 	from {
-		image = 'eclipse-temurin:21-jre-alpine'
+		image = 'eclipse-temurin:25-jre-alpine'
 	}
 	to {
 		image = 'gcr.io/zero-gap/zero-gap-backend'
