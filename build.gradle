@@ -24,7 +24,7 @@ jib {
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(21)
+		languageVersion = JavaLanguageVersion.of(25)
 	}
 }
 
@@ -51,10 +51,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.flywaydb:flyway-core'
 	implementation 'org.flywaydb:flyway-mysql'
-	implementation 'com.google.cloud:spring-cloud-gcp-starter'
-	implementation 'com.google.cloud:spring-cloud-gcp-starter-storage'
+	implementation 'me.paulschwarz:springboot3-dotenv:5.1.0'
 	implementation 'org.springframework.ai:spring-ai-starter-model-google-genai'
-	implementation 'org.springframework.ai:spring-ai-starter-model-google-genai-embedding'
+	// implementation 'org.springframework.ai:spring-ai-starter-model-google-genai-embedding'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'

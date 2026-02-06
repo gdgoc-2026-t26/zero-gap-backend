@@ -7,6 +7,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -25,7 +26,7 @@ public class UserChallenge {
     private UUID id;
 
     @NotNull(message = "User ID cannot be null")
-    private UUID userId;
+    private Long userId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "challenge_id", nullable = false)
@@ -37,6 +38,12 @@ public class UserChallenge {
     private ChallengeStatus status;
 
     private String description;
+
+    @NotNull(message = "Date cannot be null")
+    private LocalDate date;
+
+    @Builder.Default
+    private Boolean accomplished = false;
 
     private LocalDateTime startTime;
 

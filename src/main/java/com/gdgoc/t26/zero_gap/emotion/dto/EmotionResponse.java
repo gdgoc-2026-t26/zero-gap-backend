@@ -14,14 +14,14 @@ import java.time.LocalDate;
 @Builder
 public class EmotionResponse {
     private Long id;
-    private String name;
+    private Integer score;
     private LocalDate date;
     private String description;
 
     public static EmotionResponse from(Emotion emotion) {
         return EmotionResponse.builder()
                 .id(emotion.getId())
-                .name(emotion.getName())
+                .score(emotion.getScore())
                 .date(emotion.getDate())
                 .description(emotion.getDescription())
                 .build();

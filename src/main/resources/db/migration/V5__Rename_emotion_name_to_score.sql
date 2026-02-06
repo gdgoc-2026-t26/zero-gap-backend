@@ -1,0 +1,1 @@
+ALTER TABLE emotions CHANGE COLUMN name score INT NOT NULL;

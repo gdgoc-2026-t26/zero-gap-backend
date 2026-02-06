@@ -10,6 +10,7 @@ import java.util.UUID;
 
 @Repository
 public interface UserChallengeRepository extends JpaRepository<UserChallenge, UUID> {
-    List<UserChallenge> findByUserId(UUID userId);
-    List<UserChallenge> findByUserIdAndStatus(UUID userId, ChallengeStatus status);
+    List<UserChallenge> findByUserId(Long userId);
+    List<UserChallenge> findByUserIdAndStatus(Long userId, ChallengeStatus status);
+    List<UserChallenge> findByUserIdAndDateBetween(Long userId, java.time.LocalDate startDate, java.time.LocalDate endDate);
 }

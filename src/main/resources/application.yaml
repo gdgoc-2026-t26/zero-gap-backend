@@ -1,3 +1,15 @@
 spring:
   application:
     name: zero-gap
+  datasource:
+    url: jdbc:mysql:/localhost:3306/zero_gap_db?createDatabaseIfNotExist=true
+    username: root
+    password: password1!
+  jpa:
+    database: mysql
+    show-sql: true
+  ai:
+    google:
+      genai:
+        api-key: ${GOOGLE_API_KEY}
+        project-id: gdg-hackathon-486210

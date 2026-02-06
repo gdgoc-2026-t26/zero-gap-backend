@@ -29,7 +29,7 @@ public class EmotionService {
 
         Emotion emotion = Emotion.builder()
                 .user(user)
-                .name(request.getName())
+                .score(request.getScore())
                 .date(request.getDate())
                 .description(request.getDescription())
                 .build();

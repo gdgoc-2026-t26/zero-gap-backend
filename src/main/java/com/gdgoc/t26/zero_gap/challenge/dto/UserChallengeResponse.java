@@ -12,7 +12,7 @@ import java.util.UUID;
 @Builder
 public class UserChallengeResponse {
     private UUID id;
-    private UUID userId;
+    private Long userId;
     private UUID challengeId;
     private ChallengeStatus status;
     private String description;

@@ -11,4 +11,5 @@ import java.util.UUID;
 @Repository
 public interface ChallengeRepository extends JpaRepository<Challenge, UUID> {
     List<Challenge> findByDurationCategory(DurationCategory durationCategory);
+    List<Challenge> findByTitle(String title);
 }

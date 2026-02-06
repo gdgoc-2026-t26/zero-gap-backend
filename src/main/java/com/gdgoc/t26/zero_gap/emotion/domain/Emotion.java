@@ -30,9 +30,9 @@ public class Emotion {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @NotBlank(message = "Name cannot be blank")
+    @NotNull(message = "Score cannot be null")
     @Column(nullable = false)
-    private String name;
+    private Integer score;
 
     @NotNull(message = "Date cannot be null")
     @Column(nullable = false)
