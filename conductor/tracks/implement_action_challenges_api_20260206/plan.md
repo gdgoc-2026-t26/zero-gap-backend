@@ -45,7 +45,7 @@ This plan outlines the steps to implement the Action Challenges API. Each task i
 
 ## Phase 4: Security and Deployment Preparation
 
-- [x] Task: Implement Authentication and Authorization [5a5c8b0]
+- [x] Task: Implement Authentication and Authorization [9933f51]
     - [x] Write Tests: Create integration tests for secure access to API endpoints.
     - [x] Implement Feature: Integrate Spring Security for JWT/OAuth2 authentication and authorization.
 - [x] Task: Configure Deployment on Google Cloud [eb0c704]
