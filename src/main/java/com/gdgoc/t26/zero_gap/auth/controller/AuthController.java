@@ -3,12 +3,11 @@ package com.gdgoc.t26.zero_gap.auth.controller;
 import com.gdgoc.t26.zero_gap.auth.dto.LoginRequest;
 import com.gdgoc.t26.zero_gap.auth.dto.LoginResponse;
 import com.gdgoc.t26.zero_gap.auth.service.AuthService;
+import com.gdgoc.t26.zero_gap.user.dto.UserResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
@@ -20,5 +19,10 @@ public class AuthController {
     @PostMapping("/login")
     public LoginResponse login(@RequestBody @Valid LoginRequest request) {
         return authService.login(request);
+    }
+
+    @GetMapping("/me")
+    public UserResponse getMyInfo(@AuthenticationPrincipal String email) {
+        return UserResponse.from(authService.getInfo(email));
     }
 }

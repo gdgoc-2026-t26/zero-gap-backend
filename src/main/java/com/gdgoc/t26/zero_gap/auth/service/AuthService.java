@@ -30,4 +30,9 @@ public class AuthService {
         String token = jwtTokenProvider.createToken(user.getEmail());
         return new LoginResponse(token);
     }
+
+    public User getInfo(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("User not found with email: " + email));
+    }
 }

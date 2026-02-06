@@ -5,9 +5,9 @@
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Auth |  |  |  |  |  |  |  |
 |  | POST | {baseUrl}/auth/login | 로그인 |  |  | {”email”: “name@domain.com”, “password”: “password”} | {”accessToken”: “…”} |
+|  | GET | {baseUrl}/auth/me | 내 정보 조회 |  | {”Authorization”: “Bearer …”} |  | {”id”: 1, ”name”: “홍길동”} |
 | User |  |  |  |  |  |  |  |
 |  | POST | {baseUrl}/users | 회원가입 |  |  | {”name”: “홍길동”,“email”: “name@domain.com”,“password”: “password”} |  |
-|  | GET | {baseUrl}/users/me | 내 정보 조회 |  | {”Authorization”: “Bearer …”} |  | {”id”: 1, ”name”: “홍길동”} |
 | Mission |  |  |  |  |  |  |  |
 |  | GET | {baseUrl}/missions | 기간 내 미션 조회 | startDate=2020-01-01&endDate=2020-01-02 | {”Authorization”: “Bearer …”} |  | {”missions”: [{”id”: 11, ”name”: “책 한 권 읽기”, “date”: “2020-01-01” “accomplished”: true, “description”: “Clean Code를 읽었다.”},…,]} |
 |  | GET | {baseUrl}/missions/today | 오늘의 미션 요청 | durationInSeconds=3600 | {”Authorization”: “Bearer …”} |  | {”missionRecommendations”: [”책 한 권 읽기”, “한 시간 운동하기”, 코딩 문제 하나 풀기”, …]} |
