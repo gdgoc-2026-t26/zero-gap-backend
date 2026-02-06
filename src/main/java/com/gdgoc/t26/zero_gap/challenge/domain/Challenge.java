@@ -28,7 +28,6 @@ public class Challenge {
     @NotBlank(message = "Title cannot be blank")
     private String title;
 
-    @NotBlank(message = "Description cannot be blank")
     private String description;
 
     @NotNull(message = "Duration category cannot be null")
