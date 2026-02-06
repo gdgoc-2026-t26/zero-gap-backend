@@ -48,7 +48,7 @@ This plan outlines the steps to implement the Action Challenges API. Each task i
 - [x] Task: Implement Authentication and Authorization [5a5c8b0]
     - [x] Write Tests: Create integration tests for secure access to API endpoints.
     - [x] Implement Feature: Integrate Spring Security for JWT/OAuth2 authentication and authorization.
-- [ ] Task: Configure Deployment on Google Cloud
-    - [ ] Write Tests: (No specific code tests, but configuration verification)
-    - [ ] Implement Feature: Set up `build.gradle` or Maven `pom.xml` for containerization (e.g., Docker) and deployment to GCP (e.g., Cloud Run, GKE).
+- [x] Task: Configure Deployment on Google Cloud [eb0c704]
+    - [x] Write Tests: (No specific code tests, but configuration verification)
+    - [x] Implement Feature: Set up `build.gradle` or Maven `pom.xml` for containerization (e.g., Docker) and deployment to GCP (e.g., Cloud Run, GKE).
 - [ ] Task: Conductor - User Manual Verification 'Phase 4: Security and Deployment Preparation' (Protocol in workflow.md)
