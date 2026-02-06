@@ -2,11 +2,25 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.5.10'
 	id 'io.spring.dependency-management' version '1.1.7'
+	id 'com.google.cloud.tools.jib' version '3.4.4'
 }
 
 group = 'com.gdgoc.t26'
 version = '0.0.1-SNAPSHOT'
 description = 'backend server for job seeker helper app'
+
+jib {
+	from {
+		image = 'eclipse-temurin:21-jre-alpine'
+	}
+	to {
+		image = 'gcr.io/zero-gap/zero-gap-backend'
+	}
+	container {
+		mainClass = 'com.gdgoc.t26.zero_gap.ZeroGapApplication'
+		ports = ['8080']
+	}
+}
 
 java {
 	toolchain {
