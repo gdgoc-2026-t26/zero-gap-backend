@@ -43,7 +43,7 @@ This plan outlines the steps to implement the Action Challenges API. Each task i
     - [x] Implement Feature: Configure global exception handling for consistent API error responses.
 - [x] Task: Conductor - User Manual Verification 'Phase 3: API Endpoints' (Protocol in workflow.md) [092ed02]
 
-## Phase 4: Security and Deployment Preparation
+## Phase 4: Security and Deployment Preparation [checkpoint: 3e5f861]
 
 - [x] Task: Implement Authentication and Authorization [9933f51]
     - [x] Write Tests: Create integration tests for secure access to API endpoints.
@@ -51,4 +51,4 @@ This plan outlines the steps to implement the Action Challenges API. Each task i
 - [x] Task: Configure Deployment on Google Cloud [eb0c704]
     - [x] Write Tests: (No specific code tests, but configuration verification)
     - [x] Implement Feature: Set up `build.gradle` or Maven `pom.xml` for containerization (e.g., Docker) and deployment to GCP (e.g., Cloud Run, GKE).
-- [ ] Task: Conductor - User Manual Verification 'Phase 4: Security and Deployment Preparation' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 4: Security and Deployment Preparation' (Protocol in workflow.md) [3e5f861]
