@@ -4,11 +4,11 @@ This plan outlines the steps to implement the Action Challenges API. Each task i
 
 ## Phase 1: Database and Core Models
 
-- [ ] Task: Define Database Schema for Challenges
-    - [ ] Write Tests: Create unit tests for Challenge entity validation.
-    - [ ] Implement Feature: Create `Challenge` entity/model (JPA, Flyway migration for MySQL).
-    - [ ] Write Tests: Create unit tests for UserChallenge entity validation.
-    - [ ] Implement Feature: Create `UserChallenge` entity/model (JPA, Flyway migration for MySQL).
+- [x] Task: Define Database Schema for Challenges [99cda4b]
+    - [x] Write Tests: Create unit tests for Challenge entity validation.
+    - [x] Implement Feature: Create `Challenge` entity/model (JPA, Flyway migration for MySQL).
+    - [x] Write Tests: Create unit tests for UserChallenge entity validation.
+    - [x] Implement Feature: Create `UserChallenge` entity/model (JPA, Flyway migration for MySQL).
 - [ ] Task: Implement Challenge Repository
     - [ ] Write Tests: Create integration tests for `ChallengeRepository` basic CRUD operations.
     - [ ] Implement Feature: Develop `ChallengeRepository` interface and implementation.
