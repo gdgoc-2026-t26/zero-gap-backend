@@ -4,5 +4,5 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-- [ ] **Track: Implement Action Challenges API**
+- [~] **Track: Implement Action Challenges API**
   *Link: [./tracks/implement_action_challenges_api_20260206/](./tracks/implement_action_challenges_api_20260206/)*
