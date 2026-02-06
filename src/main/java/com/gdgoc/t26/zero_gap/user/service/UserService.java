@@ -6,6 +6,7 @@ import com.gdgoc.t26.zero_gap.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Service
 @RequiredArgsConstructor
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Transactional
     public User signUp(UserSignUpRequest request) {
@@ -23,7 +25,7 @@ public class UserService {
         User user = User.builder()
                 .name(request.getName())
                 .email(request.getEmail())
-                .password(request.getPassword()) // TODO: Add password encoding later
+                .password(passwordEncoder.encode(request.getPassword()))
                 .build();
 
         return userRepository.save(user);

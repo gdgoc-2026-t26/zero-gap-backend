@@ -1,4 +1,4 @@
-package com.gdgoc.t26.zero_gap.config.security;
+package com.gdgoc.t26.zero_gap.auth;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
