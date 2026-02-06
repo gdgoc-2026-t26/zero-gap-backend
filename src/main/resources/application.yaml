@@ -2,9 +2,9 @@ spring:
   application:
     name: zero-gap
   datasource:
-    url: jdbc:mysql:/localhost:3306/zero_gap_db?createDatabaseIfNotExist=true
-    username: root
-    password: password1!
+    url: jdbc:mysql://${DB_HOST:localhost}:3306/zero_gap_db?createDatabaseIfNotExist=true
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:password1!}
   jpa:
     database: mysql
     show-sql: true

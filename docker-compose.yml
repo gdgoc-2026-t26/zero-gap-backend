@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: zero-gap-db
+    restart: always
+    environment:
+      MYSQL_DATABASE: zero_gap_db
+      MYSQL_ROOT_PASSWORD: password1!
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  app:
+    build: .
+    container_name: zero-gap-app
+    restart: always
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_USERNAME=root
+      - DB_PASSWORD=password1!
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+    ports:
+      - "8080:8080"
+
+volumes:
+  mysql_data:
