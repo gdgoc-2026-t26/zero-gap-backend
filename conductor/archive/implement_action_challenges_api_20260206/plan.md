@@ -1,0 +1,54 @@
+# Implementation Plan: Implement Action Challenges API
+
+This plan outlines the steps to implement the Action Challenges API. Each task includes a test-first approach and adheres to the project's workflow guidelines.
+
+## Phase 1: Database and Core Models [checkpoint: 516443d]
+
+- [x] Task: Define Database Schema for Challenges [99cda4b]
+    - [x] Write Tests: Create unit tests for Challenge entity validation.
+    - [x] Implement Feature: Create `Challenge` entity/model (JPA, Flyway migration for MySQL).
+    - [x] Write Tests: Create unit tests for UserChallenge entity validation.
+    - [x] Implement Feature: Create `UserChallenge` entity/model (JPA, Flyway migration for MySQL).
+- [x] Task: Implement Challenge Repository [d2649e6]
+    - [x] Write Tests: Create integration tests for `ChallengeRepository` basic CRUD operations.
+    - [x] Implement Feature: Develop `ChallengeRepository` interface and implementation.
+- [x] Task: Implement UserChallenge Repository [0c3f280]
+    - [x] Write Tests: Create integration tests for `UserChallengeRepository` basic CRUD operations.
+    - [x] Implement Feature: Develop `UserChallengeRepository` interface and implementation.
+- [x] Task: Conductor - User Manual Verification 'Phase 1: Database and Core Models' (Protocol in workflow.md) [516443d]
+
+## Phase 2: Core Service Logic and AI Integration [checkpoint: 152b1a3]
+
+- [x] Task: Implement Challenge Generation Service [dbd7b55]
+    - [x] Write Tests: Create unit tests for `ChallengeGenerationService` (mocking AI API calls).
+    - [x] Implement Feature: Develop `ChallengeGenerationService` to interact with Gemini 3 API.
+- [x] Task: Implement Challenge Management Service [2d99c29]
+    - [x] Write Tests: Create unit tests for `ChallengeService` (logic for getting, starting, completing challenges).
+    - [x] Implement Feature: Develop `ChallengeService` to orchestrate business logic using repositories and generation service.
+- [x] Task: Conductor - User Manual Verification 'Phase 2: Core Service Logic and AI Integration' (Protocol in workflow.md) [152b1a3]
+
+## Phase 3: API Endpoints [checkpoint: 092ed02]
+
+- [x] Task: Implement Get Recommended Challenges Endpoint [8bd54cd]
+    - [x] Write Tests: Create integration tests for `GET /challenges` endpoint.
+    - [x] Implement Feature: Develop REST controller endpoint for retrieving challenges.
+- [x] Task: Implement Start Challenge Endpoint [50abe1a]
+    - [x] Write Tests: Create integration tests for `POST /challenges/{id}/start` endpoint.
+    - [x] Implement Feature: Develop REST controller endpoint for starting challenges.
+- [x] Task: Implement Complete Challenge Endpoint [b46100c]
+    - [x] Write Tests: Create integration tests for `POST /challenges/{id}/complete` endpoint.
+    - [x] Implement Feature: Develop REST controller endpoint for completing challenges.
+- [x] Task: Implement Global Exception Handling [9c4adfd]
+    - [x] Write Tests: Create integration tests for various error scenarios.
+    - [x] Implement Feature: Configure global exception handling for consistent API error responses.
+- [x] Task: Conductor - User Manual Verification 'Phase 3: API Endpoints' (Protocol in workflow.md) [092ed02]
+
+## Phase 4: Security and Deployment Preparation [checkpoint: 3e5f861]
+
+- [x] Task: Implement Authentication and Authorization [9933f51]
+    - [x] Write Tests: Create integration tests for secure access to API endpoints.
+    - [x] Implement Feature: Integrate Spring Security for JWT/OAuth2 authentication and authorization.
+- [x] Task: Configure Deployment on Google Cloud [eb0c704]
+    - [x] Write Tests: (No specific code tests, but configuration verification)
+    - [x] Implement Feature: Set up `build.gradle` or Maven `pom.xml` for containerization (e.g., Docker) and deployment to GCP (e.g., Cloud Run, GKE).
+- [x] Task: Conductor - User Manual Verification 'Phase 4: Security and Deployment Preparation' (Protocol in workflow.md) [3e5f861]
