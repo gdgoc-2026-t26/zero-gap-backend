@@ -5,7 +5,7 @@ Zero-Gap is an application designed to help individuals overcome burnout and pre
 
 ## Core Features
 ### Action Challenges
-- AI-recommended challenges based on selectable durations (short, medium, long).
+- AI-recommended challenge titles based on selectable durations (short, medium, long), with user-defined descriptions for personalization.
 - Examples: coding problems, resume editing, reading, exercise, short study sessions.
 
 ### Emotional Journaling
