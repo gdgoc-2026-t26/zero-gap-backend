@@ -33,6 +33,9 @@ class SecurityIntegrationTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @Autowired
+    private JwtTokenProvider jwtTokenProvider;
+
     @Test
     @DisplayName("GET /challenges without authentication should return 401 Unauthorized")
     void getChallengesWithoutAuthShouldReturn401() throws Exception {
@@ -41,10 +44,12 @@ class SecurityIntegrationTest {
     }
 
     @Test
-    @WithMockUser
-    @DisplayName("GET /challenges with authentication should return 200 OK")
-    void getChallengesWithAuthShouldReturn200() throws Exception {
-        mockMvc.perform(get("/challenges"))
+    @DisplayName("GET /challenges with valid JWT should return 200 OK")
+    void getChallengesWithValidJwtShouldReturn200() throws Exception {
+        String token = jwtTokenProvider.createToken("test-user");
+        
+        mockMvc.perform(get("/challenges")
+                        .header("Authorization", "Bearer " + token))
                 .andExpect(status().isOk());
     }
 }
