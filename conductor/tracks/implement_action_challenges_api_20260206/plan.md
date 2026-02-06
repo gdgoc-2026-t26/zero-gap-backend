@@ -32,9 +32,9 @@ This plan outlines the steps to implement the Action Challenges API. Each task i
 - [x] Task: Implement Get Recommended Challenges Endpoint [8bd54cd]
     - [x] Write Tests: Create integration tests for `GET /challenges` endpoint.
     - [x] Implement Feature: Develop REST controller endpoint for retrieving challenges.
-- [ ] Task: Implement Start Challenge Endpoint
-    - [ ] Write Tests: Create integration tests for `POST /challenges/{id}/start` endpoint.
-    - [ ] Implement Feature: Develop REST controller endpoint for starting challenges.
+- [x] Task: Implement Start Challenge Endpoint [50abe1a]
+    - [x] Write Tests: Create integration tests for `POST /challenges/{id}/start` endpoint.
+    - [x] Implement Feature: Develop REST controller endpoint for starting challenges.
 - [ ] Task: Implement Complete Challenge Endpoint
     - [ ] Write Tests: Create integration tests for `POST /challenges/{id}/complete` endpoint.
     - [ ] Implement Feature: Develop REST controller endpoint for completing challenges.
