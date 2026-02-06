@@ -2,14 +2,13 @@ package com.gdgoc.t26.zero_gap.challenge.controller;
 
 import com.gdgoc.t26.zero_gap.challenge.domain.DurationCategory;
 import com.gdgoc.t26.zero_gap.challenge.dto.ChallengeResponse;
+import com.gdgoc.t26.zero_gap.challenge.dto.UserChallengeResponse;
 import com.gdgoc.t26.zero_gap.challenge.service.ChallengeService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
@@ -27,5 +26,12 @@ public class ChallengeController {
                 .stream()
                 .map(ChallengeResponse::from)
                 .collect(Collectors.toList());
+    }
+
+    @PostMapping("/{id}/start")
+    public UserChallengeResponse startChallenge(@PathVariable UUID id) {
+        // Placeholder user ID until security is implemented
+        UUID userId = UUID.fromString("00000000-0000-0000-0000-000000000000");
+        return UserChallengeResponse.from(challengeService.startChallenge(userId, id));
     }
 }

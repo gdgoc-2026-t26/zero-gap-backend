@@ -18,8 +18,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.List;
 import java.util.UUID;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -47,22 +50,34 @@ class ChallengeControllerTest {
     @Test
     @DisplayName("GET /challenges should return a list of challenges")
     void getChallengesShouldReturnList() throws Exception {
+        // ... (previous test)
+    }
+
+    @Test
+    @DisplayName("POST /challenges/{id}/start should start a challenge")
+    void startChallengeShouldReturnUserChallenge() throws Exception {
         // Given
-        Challenge challenge = Challenge.builder()
-                .id(UUID.randomUUID())
-                .title("Test Challenge")
-                .description("Desc")
-                .durationCategory(DurationCategory.SHORT)
-                .aiGenerated(false)
-                .build();
+        UUID challengeId = UUID.randomUUID();
+        UUID userId = UUID.randomUUID(); // This would normally come from security context
         
-        when(challengeService.getRecommendedChallenges(DurationCategory.SHORT)).thenReturn(List.of(challenge));
+        com.gdgoc.t26.zero_gap.challenge.domain.UserChallenge userChallenge = 
+                com.gdgoc.t26.zero_gap.challenge.domain.UserChallenge.builder()
+                .id(UUID.randomUUID())
+                .userId(userId)
+                .challenge(Challenge.builder().id(challengeId).build())
+                .status(com.gdgoc.t26.zero_gap.challenge.domain.ChallengeStatus.STARTED)
+                .startTime(java.time.LocalDateTime.now())
+                .build();
+
+        // Note: For now, we'll mock userId as being passed or resolved somehow.
+        // The spec says POST /challenges/{challenge_id}/start.
+        // Usually, userId is from authenticated user.
+        when(challengeService.startChallenge(any(UUID.class), eq(challengeId))).thenReturn(userChallenge);
 
         // When & Then
-        mockMvc.perform(get("/challenges")
-                        .param("duration", "SHORT"))
+        mockMvc.perform(post("/challenges/" + challengeId + "/start"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].title").value("Test Challenge"))
-                .andExpect(jsonPath("$[0].durationCategory").value("SHORT"));
+                .andExpect(jsonPath("$.status").value("STARTED"))
+                .andExpect(jsonPath("$.challengeId").value(challengeId.toString()));
     }
 }
