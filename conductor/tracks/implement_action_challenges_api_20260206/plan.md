@@ -2,7 +2,7 @@
 
 This plan outlines the steps to implement the Action Challenges API. Each task includes a test-first approach and adheres to the project's workflow guidelines.
 
-## Phase 1: Database and Core Models
+## Phase 1: Database and Core Models [checkpoint: 516443d]
 
 - [x] Task: Define Database Schema for Challenges [99cda4b]
     - [x] Write Tests: Create unit tests for Challenge entity validation.
@@ -15,7 +15,7 @@ This plan outlines the steps to implement the Action Challenges API. Each task i
 - [x] Task: Implement UserChallenge Repository [0c3f280]
     - [x] Write Tests: Create integration tests for `UserChallengeRepository` basic CRUD operations.
     - [x] Implement Feature: Develop `UserChallengeRepository` interface and implementation.
-- [ ] Task: Conductor - User Manual Verification 'Phase 1: Database and Core Models' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 1: Database and Core Models' (Protocol in workflow.md) [516443d]
 
 ## Phase 2: Core Service Logic and AI Integration
 
